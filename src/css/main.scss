@@ -1,0 +1,17 @@
+@import '~ress/ress.css';
+@import 'css/_variables.scss';
+
+body {
+  display: flex;
+  max-width: 800px;
+  color: white;
+  background-color: $col;
+  border-radius: 5px;
+}
+
+.example {
+  display: flex;
+  user-select: none;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
