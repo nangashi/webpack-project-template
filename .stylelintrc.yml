@@ -1,10 +1,29 @@
+plugins:
+  - stylelint-scss
+  - stylelint-declaration-block-no-ignored-properties
+  - stylelint-no-unsupported-browser-features
 extends:
   - stylelint-config-standard
   - stylelint-config-recess-order
-syntax: scss
 rules:
   string-quotes: single
+  font-family-no-missing-generic-family-keyword: true
+  declaration-block-no-shorthand-property-overrides: true
+  # @mixin
   at-rule-no-unknown: null
   scss/at-rule-no-unknown: true
-plugins:
-  - stylelint-scss
+  plugin/declaration-block-no-ignored-properties: true
+  plugin/no-unsupported-browser-features:
+    - true
+    - browsers: [
+      "> 5% in JP",
+      "Last 2 Safari versions",
+      "Last 2 iOS versions",
+      "Last 2 Chrome versions",
+      "Last 2 ChromeAndroid versions",
+      "IE 11",
+      "Last 2 Edge versions",
+      "Last 2 Firefox versions",
+      "Last 2 FirefoxAndroid versions",
+      ]
+    - severity: "warning"
