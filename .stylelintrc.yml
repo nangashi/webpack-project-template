@@ -26,4 +26,4 @@ rules:
       "Last 2 Firefox versions",
       "Last 2 FirefoxAndroid versions",
       ]
-    - severity: "warning"
+      severity: "warning"
