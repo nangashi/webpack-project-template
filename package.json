@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "npm run build & webpack-dev-server",
-    "build": "webpack --env.production --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --env.production"
   },
   "keywords": [],
   "author": "",

@@ -21,7 +21,7 @@ module.exports = env => {
 
   return {
     devtool: isProduction ? false : 'inline-source-map',
-    mode: 'development',
+    mode: isProduction ? 'production' : 'development',
     // watch: true,
     entry: {
       main: './src/js/main.js',
