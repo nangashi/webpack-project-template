@@ -78,6 +78,9 @@ module.exports = env => {
             {
               loader: 'html-loader',
             },
+            {
+              loader: 'htmllint-loader',
+            },
           ],
         },
         {
