@@ -5,5 +5,8 @@
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "eslint.autoFixOnSave": true,
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "stylelint.config": {
+    "ignoreFiles": ["dist /**/*.css"]
+  }
 }
