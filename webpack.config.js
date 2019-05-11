@@ -7,7 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
 const htmlWebpackPluginMinifyConfig = {
@@ -39,15 +38,18 @@ module.exports = env => {
     },
     optimization: {
       minimizer: [
-        new TerserWebpackPlugin({
-          sourceMap: true,
-          terserOptions: {
-            compress: {
-              drop_console: true,
-            },
+        new OptimizeCssAssetsWebpackPlugin({
+          cssProcessorPluginOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: {
+                  removeAll: true,
+                },
+              },
+            ],
           },
         }),
-        // new OptimizeCssAssetsWebpackPlugin({}),
       ],
     },
     module: {
@@ -101,6 +103,7 @@ module.exports = env => {
                     grid: true,
                   }),
                   require('postcss-preset-env')(),
+                  // require('cssnano'),
                 ],
               },
             },
@@ -159,6 +162,9 @@ module.exports = env => {
       //   template: 'src/html/template2.html',
       //   chunks: ['main', 'sub'],
       //   minify: htmlWebpackPluginMinifyConfig
+      // }),
+      // new ScriptExtHtmlWebpackPlugin({
+      //   defaultAttribute: 'defer'
       // }),
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
