@@ -8,7 +8,7 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
-// const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -180,9 +180,9 @@ module.exports = env => {
         chunks: ['sub', 'vendor'],
         minify: htmlWebpackPluginMinifyConfig,
       }),
-      // new ScriptExtHtmlWebpackPlugin({
-      //   defaultAttribute: 'defer',
-      // }),
+      new ScriptExtHtmlWebpackPlugin({
+        defaultAttribute: 'defer',
+      }),
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
       }),
