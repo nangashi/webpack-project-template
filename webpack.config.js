@@ -28,7 +28,7 @@ module.exports = env => {
     // watch: true,
     entry: {
       main: './src/js/main.js',
-      // sub: './src/js/sub.js'
+      sub: './src/js/sub.js',
     },
     output: {
       filename: 'js/[name].bundle.js',
@@ -41,6 +41,16 @@ module.exports = env => {
       },
     },
     optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /node_modules/,
+            name: 'vendor',
+            chunks: 'initial',
+            enforce: true,
+          },
+        },
+      },
       minimizer: [
         new TerserWebpackPlugin({
           sourceMap: true,
@@ -154,15 +164,15 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/html/template.html',
-        chunks: ['main'],
+        chunks: ['main', 'vendor'],
         minify: htmlWebpackPluginMinifyConfig,
       }),
-      // new HtmlWebpackPlugin({
-      //   filename: 'index2.html',
-      //   template: 'src/html/template2.html',
-      //   chunks: ['main', 'sub'],
-      //   minify: htmlWebpackPluginMinifyConfig
-      // }),
+      new HtmlWebpackPlugin({
+        filename: 'index2.html',
+        template: 'src/html/template2.html',
+        chunks: ['sub', 'vendor'],
+        minify: htmlWebpackPluginMinifyConfig,
+      }),
       // new ScriptExtHtmlWebpackPlugin({
       //   defaultAttribute: 'defer',
       // }),

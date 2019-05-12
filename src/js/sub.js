@@ -1,2 +1,8 @@
-let a = 1;
-console.log(a);
+import axios from 'axios';
+
+let aaaaa = 1;
+console.log(aaaaa);
+
+if (aaaaa === 0) {
+  axios.get;
+}
