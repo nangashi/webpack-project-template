@@ -125,6 +125,9 @@ module.exports = env => {
                     grid: true,
                   }),
                   require('postcss-preset-env')(),
+                  require('postcss-purgecss')({
+                    content: ['src/html/**/*'],
+                  }),
                 ],
               },
             },
