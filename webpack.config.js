@@ -8,14 +8,16 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
-const htmlWebpackPluginMinifyConfig = {
-  collapseBooleanAttributes: true,
-  collapseWhitespace: true,
-  removeComments: true,
-};
-
 module.exports = env => {
   const isProduction = env && env.production;
+
+  const htmlWebpackPluginMinifyConfig = isProduction
+    ? {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      }
+    : undefined;
 
   return {
     devtool: isProduction ? false : 'inline-source-map',
