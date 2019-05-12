@@ -8,9 +8,11 @@ const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
+// const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = env => {
   const isProduction = env && env.production;
+  const isClean = env && env.clean;
 
   const htmlWebpackPluginMinifyConfig = isProduction
     ? {
@@ -113,7 +115,6 @@ module.exports = env => {
                     grid: true,
                   }),
                   require('postcss-preset-env')(),
-                  // require('cssnano'),
                 ],
               },
             },
@@ -139,7 +140,7 @@ module.exports = env => {
       ],
     },
     plugins: [
-      ...(isProduction ? [new CleanWebpackPlugin({})] : []),
+      ...(isClean ? [new CleanWebpackPlugin({})] : []),
       ...(isProduction
         ? [
             new ImageminWebpackPlugin({
@@ -163,7 +164,7 @@ module.exports = env => {
       //   minify: htmlWebpackPluginMinifyConfig
       // }),
       // new ScriptExtHtmlWebpackPlugin({
-      //   defaultAttribute: 'defer'
+      //   defaultAttribute: 'defer',
       // }),
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
