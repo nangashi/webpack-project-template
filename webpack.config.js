@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
 module.exports = env => {
@@ -39,6 +40,14 @@ module.exports = env => {
     },
     optimization: {
       minimizer: [
+        new TerserWebpackPlugin({
+          sourceMap: true,
+          terserOptions: {
+            compress: {
+              drop_console: true,
+            },
+          },
+        }),
         new OptimizeCssAssetsWebpackPlugin({
           cssProcessorPluginOptions: {
             preset: [
