@@ -10,9 +10,12 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 // const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = env => {
   const isProduction = env && env.production;
   const isClean = env && env.clean;
+  const isAnalyze = env && env.analyze;
 
   const htmlWebpackPluginMinifyConfig = isProduction
     ? {
@@ -153,6 +156,7 @@ module.exports = env => {
       ],
     },
     plugins: [
+      ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
       ...(isClean ? [new CleanWebpackPlugin({})] : []),
       ...(isProduction
         ? [
