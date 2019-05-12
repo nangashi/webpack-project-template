@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "npm run build & webpack-dev-server",
-    "build": "webpack --env.production"
+    "serve": "npm run build-images-webp & webpack-dev-server",
+    "build": "webpack --env.production & npm run build-images-webp",
+    "build-images-webp": "node src/build/images_webp.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "htmllint-loader": "^2.1.4",
+    "imagemin-keep-folder": "^5.3.2",
     "imagemin-pngquant": "^7.0.0",
     "imagemin-webp-webpack-plugin": "^3.1.0",
     "imagemin-webpack-plugin": "^2.4.2",

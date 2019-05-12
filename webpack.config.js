@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
@@ -129,28 +128,17 @@ module.exports = env => {
       ],
     },
     plugins: [
-      new CleanWebpackPlugin({
-        dry: !isProduction,
-      }),
-      new ImageminWebpackPlugin({
-        test: isProduction ? /\.png$/ : /.^/,
-        pngquant: {
-          quality: '70-80',
-        },
-      }),
-      new ImageminWebpWebpackPlugin({
-        config: [
-          {
-            test: isProduction ? /\.(jpe?g|png)$/ : /.^/,
-            options: {
-              quality: 60,
-            },
-          },
-        ],
-        overrideExtension: true,
-        detailedLogs: false,
-        strict: true,
-      }),
+      ...(isProduction ? [new CleanWebpackPlugin({})] : []),
+      ...(isProduction
+        ? [
+            new ImageminWebpackPlugin({
+              test: /\.png$/,
+              pngquant: {
+                quality: '70-80',
+              },
+            }),
+          ]
+        : []),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/html/template.html',
