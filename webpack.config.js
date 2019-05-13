@@ -173,12 +173,14 @@ module.exports = env => {
         template: 'src/html/template.html',
         chunks: ['main', 'vendor'],
         minify: htmlWebpackPluginMinifyConfig,
+        inject: 'head',
       }),
       new HtmlWebpackPlugin({
         filename: 'index2.html',
         template: 'src/html/template2.html',
         chunks: ['sub', 'vendor'],
         minify: htmlWebpackPluginMinifyConfig,
+        inject: 'head',
       }),
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer',
