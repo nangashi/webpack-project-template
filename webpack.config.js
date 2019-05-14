@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,6 +10,8 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
+const HtmlMinifierWebpackPlugin = require('html-minifier-webpack-plugin');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -21,7 +24,9 @@ module.exports = env => {
     ? {
         collapseBooleanAttributes: true,
         collapseWhitespace: true,
+        removeAttributeQuotes: true,
         removeComments: true,
+        removeRedundantAttributes: true,
       }
     : undefined;
 
@@ -172,14 +177,12 @@ module.exports = env => {
         filename: 'index.html',
         template: 'src/html/template.html',
         chunks: ['main', 'vendor'],
-        minify: htmlWebpackPluginMinifyConfig,
         inject: 'head',
       }),
       new HtmlWebpackPlugin({
         filename: 'index2.html',
         template: 'src/html/template2.html',
         chunks: ['sub', 'vendor'],
-        minify: htmlWebpackPluginMinifyConfig,
         inject: 'head',
       }),
       new ScriptExtHtmlWebpackPlugin({
@@ -188,6 +191,22 @@ module.exports = env => {
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
       }),
+      new HtmlMinifierWebpackPlugin(htmlWebpackPluginMinifyConfig),
+      ...['index.html', 'index2.html'].map(
+        file =>
+          new HtmlCriticalWebpackPlugin({
+            base: path.join(path.resolve(__dirname), 'dist/'),
+            src: file,
+            dest: file,
+            inline: true,
+            minify: true,
+            width: 375,
+            height: 565,
+            penthouse: {
+              blockJSRequests: false,
+            },
+          })
+      ),
       new CopyWebpackPlugin([{ from: 'assets', to: '' }]),
       new StylelintWebpackPlugin(),
     ],
