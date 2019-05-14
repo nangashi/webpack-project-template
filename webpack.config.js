@@ -11,7 +11,6 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
-const HtmlMinifierWebpackPlugin = require('html-minifier-webpack-plugin');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -19,16 +18,6 @@ module.exports = env => {
   const isProduction = env && env.production;
   const isClean = env && env.clean;
   const isAnalyze = env && env.analyze;
-
-  const htmlWebpackPluginMinifyConfig = isProduction
-    ? {
-        collapseBooleanAttributes: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-      }
-    : undefined;
 
   return {
     devtool: isProduction ? false : 'inline-source-map',
@@ -191,7 +180,6 @@ module.exports = env => {
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
       }),
-      new HtmlMinifierWebpackPlugin(htmlWebpackPluginMinifyConfig),
       ...['index.html', 'index2.html'].map(
         file =>
           new HtmlCriticalWebpackPlugin({
