@@ -12,6 +12,5 @@ if (aaaaa === 0) {
   axios.get;
 }
 
-document.querySelector(
-  'header'
-).text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text.text = 'hoge';
+var h = document.querySelector('header');
+if (h !== null) h.innerHTML = 'hoge';

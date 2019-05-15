@@ -24,8 +24,8 @@ module.exports = env => {
     mode: isProduction ? 'production' : 'development',
     // watch: true,
     entry: {
-      main: './src/js/main.js',
-      sub: './src/js/sub.js',
+      main: './src/ts/main.ts',
+      sub: './src/ts/sub.ts',
     },
     output: {
       filename: 'js/[name].bundle.js',
@@ -84,12 +84,19 @@ module.exports = env => {
           exclude: /node_modules/,
           use: [
             {
-              // 利用するローダー
               loader: 'babel-loader',
-              // ローダーのオプション
               options: {
                 presets: [['@babel/preset-env', { modules: false }]],
               },
+            },
+          ],
+        },
+        {
+          test: /\.(ts)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'ts-loader',
             },
           ],
         },

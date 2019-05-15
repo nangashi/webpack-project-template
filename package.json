@@ -53,6 +53,8 @@
     "stylelint-no-unsupported-browser-features": "^3.0.2",
     "stylelint-scss": "^3.6.1",
     "stylelint-webpack-plugin": "^0.10.5",
+    "ts-loader": "^6.0.0",
+    "typescript": "^3.4.5",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",

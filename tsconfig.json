@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["es2018", "dom"],
+    "sourceMap": true,
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "removeComments": false,
+    "downlevelIteration": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true
+  }
+}
