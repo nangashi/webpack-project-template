@@ -7,9 +7,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "serve": "npm run build-images-webp & webpack-dev-server",
+    "serve": "npm run build:webp & webpack-dev-server",
     "analyze": "webpack --env.analyze",
-    "build:webp": "node src/build/images_webp.js",
+    "build:webp": "node scripts/create_webp_images.js",
     "minify:html": "npx html-minifier --input-dir dist/ --output-dir dist/ --file-ext html -c html-minifier.conf",
     "prod:serve": "npm run build:webp & webpack-dev-server --env.production",
     "prod:build": "webpack --env.production --env.clean & npm run build:webp & npm run minify:html"
