@@ -2,6 +2,9 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "main": "index.js",
   "scripts": {
     "serve": "npm run build-images-webp & webpack-dev-server",

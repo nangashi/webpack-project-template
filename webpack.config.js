@@ -77,7 +77,7 @@ module.exports = env => {
           enforce: 'pre',
           test: /\.([jt]s)$/,
           exclude: /node_modules/,
-          loader: 'eslint-loader', // TODO:
+          loader: 'eslint-loader',
         },
         {
           test: /\.(js)$/,
