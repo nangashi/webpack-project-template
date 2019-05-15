@@ -1,11 +1,17 @@
 env:
   browser: true
   es6: true
+parser: "@typescript-eslint/parser"
+parserOptions:
+  sourceType: module
+  project: ./tsconfig.json
 plugins:
   - prettier
+  - "@typescript-eslint"
 extends:
-  - 'eslint:recommended'
-  - prettier
+  - plugin:@typescript-eslint/recommended
+  - plugin:prettier/recommended
+  - prettier/@typescript-eslint
 rules:
   quotes:
     - 2
@@ -43,5 +49,3 @@ rules:
   no-redeclare: 2
   no-self-compare: 2
   no-throw-literal: 2
-parserOptions:
-  sourceType: module

@@ -75,7 +75,7 @@ module.exports = env => {
       rules: [
         {
           enforce: 'pre',
-          test: /\.(js)$/,
+          test: /\.([jt]s)$/,
           exclude: /node_modules/,
           loader: 'eslint-loader', // TODO:
         },
@@ -95,6 +95,12 @@ module.exports = env => {
           test: /\.(ts)$/,
           exclude: /node_modules/,
           use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [['@babel/preset-env', { modules: false }]],
+              },
+            },
             {
               loader: 'ts-loader',
             },
