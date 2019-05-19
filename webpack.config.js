@@ -95,32 +95,25 @@ module.exports = env => {
           test: /\.(ts)$/,
           exclude: /node_modules/,
           use: [
+            'cache-loader',
             {
               loader: 'babel-loader',
               options: {
                 presets: [['@babel/preset-env', { modules: false }]],
               },
             },
-            {
-              loader: 'ts-loader',
-            },
+            'ts-loader',
           ],
         },
         {
           test: /\.(html)$/,
-          use: [
-            {
-              loader: 'html-loader',
-            },
-            {
-              loader: 'htmllint-loader',
-            },
-          ],
+          use: ['cache-loader', 'html-loader', 'htmllint-loader'],
         },
         {
           test: /\.(sass|scss|css)$/,
           use: [
             MiniCssExtractPlugin.loader,
+            'cache-loader',
             {
               loader: 'css-loader',
               options: {
@@ -147,6 +140,7 @@ module.exports = env => {
         {
           test: /\.(jpe?g|png|gif)$/,
           use: [
+            'cache-loader',
             {
               loader: 'url-loader',
               options: {
