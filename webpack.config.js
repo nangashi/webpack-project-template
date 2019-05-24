@@ -36,6 +36,7 @@ module.exports = env => {
         images: path.resolve(__dirname, 'src/images/'),
         css: path.resolve(__dirname, 'src/css/'),
       },
+      extensions: ['.js', '.ts'],
     },
     optimization: {
       splitChunks: {
