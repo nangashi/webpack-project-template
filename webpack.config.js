@@ -188,21 +188,23 @@ module.exports = env => {
       new MiniCssExtractPlugin({
         filename: 'css/style.css',
       }),
-      ...['index.html', 'index2.html'].map(
-        file =>
-          new HtmlCriticalWebpackPlugin({
-            base: path.join(path.resolve(__dirname), 'dist/'),
-            src: file,
-            dest: file,
-            inline: true,
-            minify: true,
-            width: 375,
-            height: 565,
-            penthouse: {
-              blockJSRequests: false,
-            },
-          })
-      ),
+      ...(isProduction
+        ? ['index.html', 'index2.html'].map(
+            file =>
+              new HtmlCriticalWebpackPlugin({
+                base: path.join(path.resolve(__dirname), 'dist/'),
+                src: file,
+                dest: file,
+                inline: true,
+                minify: true,
+                width: 375,
+                height: 565,
+                penthouse: {
+                  blockJSRequests: false,
+                },
+              })
+          )
+        : []),
       new CopyWebpackPlugin([{ from: 'assets', to: '' }]),
       new StylelintWebpackPlugin(),
     ],

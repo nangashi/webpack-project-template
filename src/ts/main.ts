@@ -13,4 +13,6 @@ if (aaaaa === 0) {
 }
 
 var h = document.querySelector('header');
-if (h !== null) h.innerHTML = 'hoge';
+if (h !== null) {
+  h.innerHTML = 'hoge';
+}
