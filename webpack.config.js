@@ -29,7 +29,7 @@ module.exports = env => {
     },
     output: {
       filename: 'js/[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'public'),
     },
     resolve: {
       alias: {
@@ -192,7 +192,7 @@ module.exports = env => {
         ? ['index.html', 'index2.html'].map(
             file =>
               new HtmlCriticalWebpackPlugin({
-                base: path.resolve(__dirname, 'dist/'),
+                base: path.resolve(__dirname, 'public/'),
                 src: file,
                 dest: file,
                 inline: true,
@@ -211,7 +211,7 @@ module.exports = env => {
     devServer: {
       open: true,
       openPage: '',
-      contentBase: path.resolve(__dirname, 'dist'),
+      contentBase: path.resolve(__dirname, 'public/'),
       watchContentBase: true,
       port: 3000,
     },

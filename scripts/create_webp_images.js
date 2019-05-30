@@ -5,7 +5,7 @@ const imageminWebp = require('imagemin-webp');
   const webpFiles = await imagemin(['src/images/**/*.{jpg,png}'], {
     use: [imageminWebp({ quality: 50 })],
     replaceOutputDir: output => {
-      return output.replace(/images\//, '../dist/images/');
+      return output.replace(/images\//, '../public/images/');
     },
   });
   console.log(webpFiles);

@@ -7,6 +7,6 @@
   "eslint.autoFixOnSave": true,
   "files.eol": "\n",
   "stylelint.config": {
-    "ignoreFiles": ["dist /**/*.css"]
+    "ignoreFiles": ["public /**/*.css"]
   }
 }
